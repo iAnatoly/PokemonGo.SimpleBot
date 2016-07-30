@@ -25,7 +25,7 @@ namespace PokemonGo.SimpleBot {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("37.8088")]
         public double Latitude {
             get {
                 return ((double)(this["Latitude"]));
@@ -37,7 +37,7 @@ namespace PokemonGo.SimpleBot {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("-122.409864")]
         public double Longitude {
             get {
                 return ((double)(this["Longitude"]));
@@ -61,19 +61,7 @@ namespace PokemonGo.SimpleBot {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool AllowCollection {
-            get {
-                return ((bool)(this["AllowCollection"]));
-            }
-            set {
-                this["AllowCollection"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool AllowCatching {
             get {
                 return ((bool)(this["AllowCatching"]));
@@ -85,7 +73,7 @@ namespace PokemonGo.SimpleBot {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool AllowEvolution {
             get {
                 return ((bool)(this["AllowEvolution"]));
@@ -97,7 +85,7 @@ namespace PokemonGo.SimpleBot {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool AllowRecycle {
             get {
                 return ((bool)(this["AllowRecycle"]));
@@ -109,7 +97,7 @@ namespace PokemonGo.SimpleBot {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
         public int NumberOfSamePokemonsToKeep {
             get {
                 return ((int)(this["NumberOfSamePokemonsToKeep"]));
@@ -121,7 +109,7 @@ namespace PokemonGo.SimpleBot {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool AllowTransfer {
             get {
                 return ((bool)(this["AllowTransfer"]));
@@ -133,13 +121,37 @@ namespace PokemonGo.SimpleBot {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("15")]
         public double WalkingSpeedKmh {
             get {
                 return ((double)(this["WalkingSpeedKmh"]));
             }
             set {
                 this["WalkingSpeedKmh"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool AllowFarming {
+            get {
+                return ((bool)(this["AllowFarming"]));
+            }
+            set {
+                this["AllowFarming"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        public int MaxPOkemonsPerPokestop {
+            get {
+                return ((int)(this["MaxPOkemonsPerPokestop"]));
+            }
+            set {
+                this["MaxPOkemonsPerPokestop"] = value;
             }
         }
     }

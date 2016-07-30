@@ -27,7 +27,9 @@ namespace PokemonGo.SimpleBot
         public bool AllowRecycle => UserSettings.Default.AllowRecycle;
         public bool AllowTransfer => UserSettings.Default.AllowTransfer;
         public bool AllowCatching => UserSettings.Default.AllowCatching;
+        public bool AllowFarming=> UserSettings.Default.AllowFarming;
 
+        public int MaxPokemonsPerPokestop => UserSettings.Default.MaxPOkemonsPerPokestop;
         public int PokemonsToKeep => UserSettings.Default.NumberOfSamePokemonsToKeep;
 
         public string GoogleUsername { get; set; }
@@ -53,45 +55,46 @@ namespace PokemonGo.SimpleBot
             PokemonId.Eevee, 
         };
 
-        IEnumerable<KeyValuePair<ItemId, int>> ItemRecycleFilter => new[]
+        public Dictionary<ItemId, int> ItemRecycleFilter => new Dictionary<ItemId, int> 
         {
-            new KeyValuePair<ItemId, int>(ItemId.ItemUnknown, 0),
-            new KeyValuePair<ItemId, int>(ItemId.ItemPokeBall, 50), 
-            new KeyValuePair<ItemId, int>(ItemId.ItemGreatBall, 50),
-            new KeyValuePair<ItemId, int>(ItemId.ItemUltraBall, 50),
-            new KeyValuePair<ItemId, int>(ItemId.ItemMasterBall, 100),
 
-            new KeyValuePair<ItemId, int>(ItemId.ItemPotion, 0),
-            new KeyValuePair<ItemId, int>(ItemId.ItemSuperPotion, 0),
-            new KeyValuePair<ItemId, int>(ItemId.ItemHyperPotion, 50),
-            new KeyValuePair<ItemId, int>(ItemId.ItemMaxPotion, 50),
+            { ItemId.ItemUnknown, 0 },
+            /*{ ItemId.ItemPokeBall, 50 },
+            { ItemId.ItemGreatBall, 50 },
+            { ItemId.ItemUltraBall, 50 },
+            { ItemId.ItemMasterBall, 100 },*/
 
-            new KeyValuePair<ItemId, int>(ItemId.ItemRevive, 10),
-            new KeyValuePair<ItemId, int>(ItemId.ItemMaxRevive, 50),
+            { ItemId.ItemPotion, 0 },
+            { ItemId.ItemSuperPotion, 0 },
+            { ItemId.ItemHyperPotion, 50 },
+            { ItemId.ItemMaxPotion, 50 },
 
-            new KeyValuePair<ItemId, int>(ItemId.ItemLuckyEgg, 200),
+            { ItemId.ItemRevive, 10 },
+            { ItemId.ItemMaxRevive, 50 },
 
-            new KeyValuePair<ItemId, int>(ItemId.ItemIncenseOrdinary, 100),
-            new KeyValuePair<ItemId, int>(ItemId.ItemIncenseSpicy, 100),
-            new KeyValuePair<ItemId, int>(ItemId.ItemIncenseCool, 100),
-            new KeyValuePair<ItemId, int>(ItemId.ItemIncenseFloral, 100),
+            { ItemId.ItemLuckyEgg, 200},
 
-            new KeyValuePair<ItemId, int>(ItemId.ItemTroyDisk, 100),
-            new KeyValuePair<ItemId, int>(ItemId.ItemXAttack, 100),
-            new KeyValuePair<ItemId, int>(ItemId.ItemXDefense, 100),
-            new KeyValuePair<ItemId, int>(ItemId.ItemXMiracle, 100),
+            { ItemId.ItemIncenseOrdinary, 100 },
+            { ItemId.ItemIncenseSpicy, 100 },
+            { ItemId.ItemIncenseCool, 100 },
+            {ItemId.ItemIncenseFloral, 100 },
 
-            new KeyValuePair<ItemId, int>(ItemId.ItemRazzBerry, 20),
-            new KeyValuePair<ItemId, int>(ItemId.ItemBlukBerry, 10),
-            new KeyValuePair<ItemId, int>(ItemId.ItemNanabBerry, 10),
-            new KeyValuePair<ItemId, int>(ItemId.ItemWeparBerry, 30),
-            new KeyValuePair<ItemId, int>(ItemId.ItemPinapBerry, 30),
+            {ItemId.ItemTroyDisk, 100 },
+            {ItemId.ItemXAttack, 100 },
+            {ItemId.ItemXDefense, 100 },
+            {ItemId.ItemXMiracle, 100 },
 
-            new KeyValuePair<ItemId, int>(ItemId.ItemSpecialCamera, 100),
-            new KeyValuePair<ItemId, int>(ItemId.ItemIncubatorBasicUnlimited, 100),
-            new KeyValuePair<ItemId, int>(ItemId.ItemIncubatorBasic, 100),
-            new KeyValuePair<ItemId, int>(ItemId.ItemPokemonStorageUpgrade, 100),
-            new KeyValuePair<ItemId, int>(ItemId.ItemItemStorageUpgrade, 100),
+            {ItemId.ItemRazzBerry, 20 },
+            {ItemId.ItemBlukBerry, 10 },
+            {ItemId.ItemNanabBerry, 10 },
+            {ItemId.ItemWeparBerry, 30 },
+            {ItemId.ItemPinapBerry, 30 },
+
+            {ItemId.ItemSpecialCamera, 100 },
+            {ItemId.ItemIncubatorBasicUnlimited, 100 },
+            {ItemId.ItemIncubatorBasic, 100 },
+            {ItemId.ItemPokemonStorageUpgrade, 100 },
+            {ItemId.ItemItemStorageUpgrade, 100 },
         };
 
         public string GoogleRefreshToken { get; set; }
