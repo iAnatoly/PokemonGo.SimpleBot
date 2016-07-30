@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokemonGo.SimpleBot", "PokemonGo.SimpleBot.csproj", "{8B3C357F-C57D-48DA-8CA6-4E3E27EC5538}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokemonGo.RocketAPI", "..\Pokemon-Go-Rocket-API\PokemonGo.RocketAPI\PokemonGo.RocketAPI.csproj", "{05D2DA44-1B8E-4CF7-94ED-4D52451CD095}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokemonGo.Logger", "..\PokemonGo.Logger\PokemonGo.Logger.csproj", "{9C6C9258-878F-47D6-BE1D-613D00344CFE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8B3C357F-C57D-48DA-8CA6-4E3E27EC5538}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B3C357F-C57D-48DA-8CA6-4E3E27EC5538}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B3C357F-C57D-48DA-8CA6-4E3E27EC5538}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B3C357F-C57D-48DA-8CA6-4E3E27EC5538}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05D2DA44-1B8E-4CF7-94ED-4D52451CD095}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05D2DA44-1B8E-4CF7-94ED-4D52451CD095}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05D2DA44-1B8E-4CF7-94ED-4D52451CD095}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05D2DA44-1B8E-4CF7-94ED-4D52451CD095}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C6C9258-878F-47D6-BE1D-613D00344CFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C6C9258-878F-47D6-BE1D-613D00344CFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C6C9258-878F-47D6-BE1D-613D00344CFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C6C9258-878F-47D6-BE1D-613D00344CFE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
