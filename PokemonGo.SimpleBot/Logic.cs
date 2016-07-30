@@ -31,17 +31,17 @@ namespace PokemonGo.SimpleBot
                 {
                     var player = await _client.Player.GetPlayer();
                     var mana = player.PlayerData.Currencies.Where(c => c?.Name == "STARDUST").FirstOrDefault();
-                    
                     Log.Write($"You are {player.PlayerData.Username}; stardust: {mana.Amount}");
-
-                    if (_clientSettings.AllowTransfer) await TransferDuplicatePokemon();
-                    if (_clientSettings.AllowEvolution) await EvolveAllPokemonWithEnoughCandy();
-                    if (_clientSettings.AllowRecycle) await RecycleItems();
+                    await Randomization.RandomDelay(10000); 
 
                     var visitedStops = new HashSet<string>();
 
                     while (true)
                     {
+                        if (_clientSettings.AllowTransfer) await TransferDuplicatePokemon();
+                        if (_clientSettings.AllowEvolution) await EvolveAllPokemonWithEnoughCandy();
+                        if (_clientSettings.AllowRecycle) await RecycleItems();
+
                         var pokestops = await GetNearbyPokestops();
 
                         var nearestUnseenStop = pokestops
