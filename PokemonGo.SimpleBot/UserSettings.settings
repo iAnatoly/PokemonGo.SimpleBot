@@ -9,7 +9,7 @@
       <Value Profile="(Default)">-122.409864</Value>
     </Setting>
     <Setting Name="Altitude" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">20</Value>
     </Setting>
     <Setting Name="AllowCatching" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>

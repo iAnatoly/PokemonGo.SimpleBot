@@ -49,7 +49,7 @@ namespace PokemonGo.SimpleBot {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("20")]
         public double Altitude {
             get {
                 return ((double)(this["Altitude"]));

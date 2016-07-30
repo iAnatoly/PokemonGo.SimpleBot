@@ -30,7 +30,9 @@ namespace PokemonGo.SimpleBot
                 try
                 {
                     var player = await _client.Player.GetPlayer();
-                    Log.Write($"You are {player.PlayerData.Username}");
+                    var mana = player.PlayerData.Currencies.Where(c => c?.Name == "STARDUST").FirstOrDefault();
+                    
+                    Log.Write($"You are {player.PlayerData.Username}; stardust: {mana.Amount}");
 
                     if (_clientSettings.AllowTransfer) await TransferDuplicatePokemon();
                     if (_clientSettings.AllowEvolution) await EvolveAllPokemonWithEnoughCandy();
