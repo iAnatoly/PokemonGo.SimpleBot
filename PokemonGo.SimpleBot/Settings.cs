@@ -59,10 +59,10 @@ namespace PokemonGo.SimpleBot
         {
 
             { ItemId.ItemUnknown, 0 },
-            /*{ ItemId.ItemPokeBall, 50 },
+            { ItemId.ItemPokeBall, 50 },
             { ItemId.ItemGreatBall, 50 },
             { ItemId.ItemUltraBall, 50 },
-            { ItemId.ItemMasterBall, 100 },*/
+            { ItemId.ItemMasterBall, 100 },
 
             { ItemId.ItemPotion, 0 },
             { ItemId.ItemSuperPotion, 0 },
@@ -99,7 +99,7 @@ namespace PokemonGo.SimpleBot
 
         public string GoogleRefreshToken { get; set; }
 
-        double ISettings.DefaultLatitude
+        public double DefaultLatitude
         {
             get
             {
@@ -112,7 +112,7 @@ namespace PokemonGo.SimpleBot
             }
         }
 
-        double ISettings.DefaultLongitude
+        public double DefaultLongitude
         {
             get
             {
@@ -125,7 +125,7 @@ namespace PokemonGo.SimpleBot
             }
         }
 
-        double ISettings.DefaultAltitude
+        public double DefaultAltitude
         {
             get
             {
