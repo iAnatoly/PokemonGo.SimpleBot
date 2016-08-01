@@ -23,6 +23,7 @@ namespace PokemonGo.SimpleBot.Actions
             await Task.Delay(delay);
 
             await client.Player.UpdatePlayerLocation(randomizedLatitude, randomizedLongitude, altitude);
+            await GPX.Tracker.RegisterWayPoint(randomizedLatitude, randomizedLongitude, altitude);
             await Task.Delay(1000);
         }
     }

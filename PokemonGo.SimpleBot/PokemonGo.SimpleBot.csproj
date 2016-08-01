@@ -18,7 +18,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug3\</OutputPath>
+    <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -59,6 +59,7 @@
     <Compile Include="Actions\InventoryTransferPokemonsExtension.cs" />
     <Compile Include="Actions\ClientRandomizationExtension.cs" />
     <Compile Include="EntryPoint.cs" />
+    <Compile Include="GPX\Tracker.cs" />
     <Compile Include="Utils\ErrorStats.cs" />
     <Compile Include="Logic.cs" />
     <Compile Include="Exceptions\OutOfPokeBallsException.cs" />
