@@ -98,7 +98,7 @@ namespace PokemonGo.SimpleBot
         {
             var visitedPokemons = new HashSet<ulong>();
 
-            for (int sightings = 0; sightings < _clientSettings.MaxPokemonsPerPokestop; sightings++)
+            for (var sightings = 0; sightings < _clientSettings.MaxPokemonsPerPokestop; sightings++)
             {
                 var nearbyPokemons = await _hunting.GetNearbyPokemons();
 

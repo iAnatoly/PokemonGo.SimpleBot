@@ -4,10 +4,8 @@ using POGOProtos.Networking.Responses;
 using PokemonGo.Logger;
 using PokemonGo.RocketAPI;
 using PokemonGo.SimpleBot.Utils;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using static POGOProtos.Networking.Responses.CatchPokemonResponse.Types;
 
@@ -68,7 +66,9 @@ namespace PokemonGo.SimpleBot.Actions
 
             var pokemons = mapObjects.MapCells
                 .SelectMany(i => i.CatchablePokemons)
-                .OrderBy(p => Navigation.DistanceBetween2Coordinates(_client.CurrentLatitude, _client.CurrentLongitude, p.Latitude, p.Longitude));
+                .OrderBy(p => Navigation.DistanceBetween2Coordinates(_client.CurrentLatitude, _client.CurrentLongitude, p.Latitude, p.Longitude))
+                .ToList();
+
             return pokemons;
         }
 
@@ -98,15 +98,10 @@ namespace PokemonGo.SimpleBot.Actions
                 var response = await _client.Encounter.CatchPokemon(pokemon.EncounterId, pokemon.SpawnPointId, pokeball);                
                 await Randomization.RandomDelay(2000);
 
-                if (response.Status == CatchStatus.CatchMissed || response.Status == CatchStatus.CatchEscape)
-                {
-                    continue;
-                }
-                else
-                {
-                    Log.Write($" {((response.Status == CatchStatus.CatchSuccess) ? '+' : '-')} {pokemon.PokemonId}: CP {encounter.WildPokemon?.PokemonData?.Cp}; P: {p} [{pokeball}]");
-                    break;
-                }
+                if (response.Status == CatchStatus.CatchMissed || response.Status == CatchStatus.CatchEscape) continue;
+                
+                Log.Write($" {((response.Status == CatchStatus.CatchSuccess) ? '+' : '-')} {pokemon.PokemonId}: CP {encounter.WildPokemon?.PokemonData?.Cp}; P: {p} [{pokeball}]");
+                break;
             } 
         }
     }

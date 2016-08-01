@@ -1,6 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
-using System.Security;
 using System.Text;
 
 namespace PokemonGo.SimpleBot.Utils
@@ -9,33 +7,33 @@ namespace PokemonGo.SimpleBot.Utils
     {
         public static string GetUsername()
         {
-            System.Console.Write("u: ");
-            return System.Console.ReadLine()?.Trim();
+            Console.Write("u: ");
+            return Console.ReadLine()?.Trim();
         }
 
 
         public static string GetPassword()
         {
-            System.Console.Write("p: ");
+            Console.Write("p: ");
             var pwd = new StringBuilder();
             while (true)
             {
-                var readkey = System.Console.ReadKey(true);
+                var readkey = Console.ReadKey(true);
                 if (readkey.Key == ConsoleKey.Enter) break;
                 if (readkey.Key == ConsoleKey.Backspace)
                 {
                     if (pwd.Length == 0) continue;
 
                     pwd.Length--;
-                    System.Console.Write("\b \b");
+                    Console.Write("\b \b");
                 }
                 else
                 {
                     pwd.Append(readkey.KeyChar);
-                    System.Console.Write("*");
+                    Console.Write("*");
                 }
             }
-            System.Console.WriteLine();
+            Console.WriteLine();
             return pwd.ToString();
         }
     }

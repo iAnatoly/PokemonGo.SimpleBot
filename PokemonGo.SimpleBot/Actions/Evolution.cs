@@ -6,10 +6,8 @@ using POGOProtos.Settings.Master;
 using PokemonGo.Logger;
 using PokemonGo.RocketAPI;
 using PokemonGo.SimpleBot.Utils;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace PokemonGo.SimpleBot.Actions
@@ -40,7 +38,8 @@ namespace PokemonGo.SimpleBot.Actions
         private static IEnumerable<InventoryItemData> GetCandy(IEnumerable<InventoryItemData> inventoryItems)
         {
             var candy = inventoryItems
-                .Where(i => i.Candy != null && i.Candy.Candy_ > 0);
+                .Where(i => i.Candy != null && i.Candy.Candy_ > 0)
+                .ToList();
             return candy;
         }
 
@@ -58,15 +57,11 @@ namespace PokemonGo.SimpleBot.Actions
                 if (blackList.Contains(pokemon.PokemonId)) continue;
 
                 var settings = pokemonSettings
-                    .Where(x => x.PokemonId == pokemon.PokemonId)
-                    .FirstOrDefault();
-
+                    .FirstOrDefault(x => x.PokemonId == pokemon.PokemonId);
                 if (settings == null || settings.CandyToEvolve == 0) continue;
 
                 var candy = pokemonCandy
-                    .Where(c => c.Candy.FamilyId == settings.FamilyId && c.Candy.Candy_ >= settings.CandyToEvolve)
-                    .FirstOrDefault();
-
+                    .FirstOrDefault(c => c.Candy.FamilyId == settings.FamilyId && c.Candy.Candy_ >= settings.CandyToEvolve);
                 if (candy == null) continue;
                 
                 var evolveResponse = await _client.Inventory.EvolvePokemon(pokemon.Id);
@@ -90,7 +85,8 @@ namespace PokemonGo.SimpleBot.Actions
             var templates = await _client.Download.GetItemTemplates();
             var pokeSettings = templates.ItemTemplates
                 .Select(i => i.PokemonSettings)
-                .Where(p => p != null && p.FamilyId != PokemonFamilyId.FamilyUnset);
+                .Where(p => p != null && p.FamilyId != PokemonFamilyId.FamilyUnset)
+                .ToList();
             await Randomization.RandomDelay(1000);
             return pokeSettings;
         }

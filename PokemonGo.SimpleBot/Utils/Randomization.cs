@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using PokemonGo.Logger;
 
 namespace PokemonGo.SimpleBot.Utils
 {

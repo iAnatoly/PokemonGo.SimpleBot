@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PokemonGo.SimpleBot.Utils
 {
@@ -19,9 +17,7 @@ namespace PokemonGo.SimpleBot.Utils
         {
             var dateThreshold = DateTime.Now.AddMinutes(-timeSpanMinutes);
             var targetType = ex.GetType();
-            int number = ErrorLog
-                .Where(k => k.Key > dateThreshold && k.Value == targetType)
-                .Count();
+            var number = ErrorLog.Count(k => k.Key > dateThreshold && k.Value == targetType);
             return number;
         }
         public static void Resest()

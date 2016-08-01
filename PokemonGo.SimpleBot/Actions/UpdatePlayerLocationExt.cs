@@ -1,16 +1,12 @@
 ﻿using PokemonGo.Logger;
 using PokemonGo.RocketAPI;
-using PokemonGo.RocketAPI.Rpc;
 using PokemonGo.SimpleBot.Utils;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace PokemonGo.SimpleBot.Actions
 {
-    static class ClientRandomizationExtension
+    static class UpdatePlayerLocationExt
     {
         public static async Task UpdatePlayerLocation(this Client client, double latitude, double longitude, double altitude, double speedKmh, string destination)
         {

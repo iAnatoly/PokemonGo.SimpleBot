@@ -54,10 +54,10 @@
     <Compile Include="Actions\Farming.cs" />
     <Compile Include="Actions\Hunting.cs" />
     <Compile Include="Actions\Evolution.cs" />
-    <Compile Include="Actions\InventoryExtensions.cs" />
-    <Compile Include="Actions\InventoryRecycleExtension.cs" />
-    <Compile Include="Actions\InventoryTransferPokemonsExtension.cs" />
-    <Compile Include="Actions\ClientRandomizationExtension.cs" />
+    <Compile Include="Actions\GetInventoryItemsExt.cs" />
+    <Compile Include="Actions\RecycleItemsExt.cs" />
+    <Compile Include="Actions\TransferDuplicatePokemonsExt.cs" />
+    <Compile Include="Actions\UpdatePlayerLocationExt.cs" />
     <Compile Include="EntryPoint.cs" />
     <Compile Include="GPX\Tracker.cs" />
     <Compile Include="Utils\ErrorStats.cs" />

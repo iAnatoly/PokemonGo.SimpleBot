@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using PokemonGo.Logger;
 
@@ -30,7 +27,7 @@ namespace PokemonGo.SimpleBot
                     Log.Write($"Unhandled exception: {ex}", LogLevel.Error);
                 }
             });
-            System.Console.ReadLine();
+            Console.ReadLine();
         }
     }
 }

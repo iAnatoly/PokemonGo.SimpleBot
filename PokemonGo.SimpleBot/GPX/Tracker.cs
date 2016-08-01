@@ -29,10 +29,7 @@ namespace PokemonGo.SimpleBot.GPX
         {
             //File.WriteAllText(_fileName, _xml.ToString()+"</gpx>");
             var encodedText = Encoding.Unicode.GetBytes(_xml.ToString() + "</trkseg></trk></gpx>");
-
-            using (FileStream sourceStream = new FileStream(_fileName,
-                FileMode.Create, FileAccess.Write, FileShare.None,
-                bufferSize: 4096, useAsync: true))
+            using (var sourceStream = new FileStream(_fileName, FileMode.Create, FileAccess.Write, FileShare.None, bufferSize: 4096, useAsync: true))
             {
                 await sourceStream.WriteAsync(encodedText, 0, encodedText.Length);
             };

@@ -2,15 +2,13 @@
 using PokemonGo.Logger;
 using PokemonGo.RocketAPI.Rpc;
 using PokemonGo.SimpleBot.Utils;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace PokemonGo.SimpleBot.Actions
 {
-    static class InventoryRecycleExtension
+    static class RecycleItemsExt
     {
         public static async Task RecycleItems(this Inventory inventory, IDictionary<ItemId, int> itemRecycleFilter)
         {

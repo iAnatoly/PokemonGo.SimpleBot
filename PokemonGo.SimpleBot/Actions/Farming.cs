@@ -7,7 +7,6 @@ using PokemonGo.SimpleBot.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace PokemonGo.SimpleBot.Actions
@@ -29,7 +28,8 @@ namespace PokemonGo.SimpleBot.Actions
             var pokeStops = mapObjects.MapCells
                 .SelectMany(i => i.Forts)
                 .Where(i => i.Type == FortType.Checkpoint && i.CooldownCompleteTimestampMs < DateTime.UtcNow.ToUnixTime())
-                .OrderBy(pokeStop => Navigation.DistanceBetween2Coordinates(_client.CurrentLatitude, _client.CurrentLongitude, pokeStop.Latitude, pokeStop.Longitude));
+                .OrderBy(pokeStop => Navigation.DistanceBetween2Coordinates(_client.CurrentLatitude, _client.CurrentLongitude, pokeStop.Latitude, pokeStop.Longitude))
+                .ToList();
             return pokeStops;
         }
 
