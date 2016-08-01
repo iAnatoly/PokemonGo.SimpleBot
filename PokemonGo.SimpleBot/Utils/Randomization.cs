@@ -11,7 +11,7 @@ namespace PokemonGo.SimpleBot.Utils
 
         public static async Task RandomDelay(int maxDelay)
         {
-            var delay = Rng.Next((maxDelay > 500) ? 500 : 0, maxDelay);
+            var delay = Rng.Next(maxDelay/2, maxDelay);
             await Task.Delay(delay);
         }
 

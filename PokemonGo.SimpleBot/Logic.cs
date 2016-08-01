@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using PokemonGo.RocketAPI;
 using PokemonGo.Logger;
@@ -33,16 +32,15 @@ namespace PokemonGo.SimpleBot
 
         }
 
-        public async Task PrintPlayerStats()
+        private async Task PrintPlayerStats()
         {
             var player = await _client.Player.GetPlayer();
-            var mana = player.PlayerData.Currencies.Where(c => c?.Name == "STARDUST").FirstOrDefault();
-            Log.Write($"You are {player.PlayerData.Username}; stardust: {mana.Amount}");
+            var mana = player.PlayerData.Currencies.FirstOrDefault(c => c?.Name == "STARDUST");
+            Log.Write($"You are {player.PlayerData.Username}; stardust: {mana?.Amount}");
             await Randomization.RandomDelay(10000);
         }
 
-        // TODO: split into multiple methods
-        public async Task LoopWhileAuthIsValid()
+        private async Task LoopWhileAuthIsValid()
         {
             while (true)
             {
@@ -60,9 +58,7 @@ namespace PokemonGo.SimpleBot
 
                         var pokestops = await _farming.GetNearbyPokestops();
 
-                        var nearestUnseenStop = pokestops
-                            .Where(pokestop => !visitedStops.Contains(pokestop.Id))
-                            .FirstOrDefault();
+                        var nearestUnseenStop = pokestops.FirstOrDefault(pokestop => !visitedStops.Contains(pokestop.Id));
 
                         if (nearestUnseenStop == null) break;
 
@@ -73,25 +69,7 @@ namespace PokemonGo.SimpleBot
 
                         try
                         {
-                            if (_clientSettings.AllowCatching)
-                            {
-                                var visitedPokemons = new HashSet<ulong>();
-
-                                for (int sightings = 0; sightings < _clientSettings.MaxPokemonsPerPokestop; sightings++)
-                                {
-                                    var nearbyPokemons = await _hunting.GetNearbyPokemons();
-                                    
-                                    var nearestUnseenPokemon = nearbyPokemons
-                                        .Where(p => !visitedPokemons.Contains(p.EncounterId))
-                                        .FirstOrDefault();
-
-                                    if (nearestUnseenPokemon == null) break;
-
-                                    var encounter = await _hunting.WalkToPokemon(nearestUnseenPokemon);
-                                    visitedPokemons.Add(nearestUnseenPokemon.EncounterId);
-                                    await _hunting.CatchEncounter(encounter, nearestUnseenPokemon);
-                                }
-                            }
+                            if (_clientSettings.AllowCatching) await HuntPokemonsLoop();
                         }
                         catch (OutOfPokeBallsException)
                         {
@@ -113,6 +91,23 @@ namespace PokemonGo.SimpleBot
                 {
                     Log.Write($"Exception: {ex}", LogLevel.Error);
                 }
+            }
+        }
+
+        private async Task HuntPokemonsLoop()
+        {
+            var visitedPokemons = new HashSet<ulong>();
+
+            for (int sightings = 0; sightings < _clientSettings.MaxPokemonsPerPokestop; sightings++)
+            {
+                var nearbyPokemons = await _hunting.GetNearbyPokemons();
+
+                var nearestUnseenPokemon = nearbyPokemons.FirstOrDefault(p => !visitedPokemons.Contains(p.EncounterId));
+                if (nearestUnseenPokemon == null) break;
+
+                var encounter = await _hunting.WalkToPokemon(nearestUnseenPokemon);
+                visitedPokemons.Add(nearestUnseenPokemon.EncounterId);
+                await _hunting.CatchEncounter(encounter, nearestUnseenPokemon);
             }
         }
 
@@ -140,7 +135,7 @@ namespace PokemonGo.SimpleBot
                     }
                     else
                     {
-                        Log.Write("Number of invalid responses has reached a safety threshold; cooling off for 10 minutes", LogLevel.Error);
+                        Log.Write("Number of invalid responses has reached a safety threshold; cooling off for 5-10 minutes", LogLevel.Error);
                         await Randomization.RandomDelay(60 * 10 * 1000);
                     }
                 }

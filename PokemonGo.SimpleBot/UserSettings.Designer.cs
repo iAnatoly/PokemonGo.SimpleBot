@@ -25,7 +25,7 @@ namespace PokemonGo.SimpleBot {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("37.8088")]
+        [global::System.Configuration.DefaultSettingValueAttribute("37.807697")]
         public double Latitude {
             get {
                 return ((double)(this["Latitude"]));
@@ -37,7 +37,7 @@ namespace PokemonGo.SimpleBot {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("-122.409864")]
+        [global::System.Configuration.DefaultSettingValueAttribute("-122.474926")]
         public double Longitude {
             get {
                 return ((double)(this["Longitude"]));
