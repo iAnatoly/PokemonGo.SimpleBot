@@ -25,12 +25,7 @@ namespace PokemonGo.SimpleBot.Utils
 
         public static double GetRandomizedCoordinate(double coordinate)
         {
-            return coordinate + 0.00010 * Rng.NextDouble();
-        }
-
-        public static int GetRandomizedWeight(double distance)
-        {
-            return (int) Math.Round(distance / 10)*10 + Rng.Next(10);
+            return coordinate + 0.00005 * Rng.NextDouble();
         }
     }
 }
