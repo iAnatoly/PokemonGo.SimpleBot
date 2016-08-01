@@ -12,22 +12,38 @@ namespace PokemonGo.SimpleBot
     using RocketAPI.Exceptions;
     using Utils;
     using Exceptions;
+    using Actions;
 
     partial class Logic
     {
         private readonly Settings _clientSettings;
         private readonly Client _client;
+        private readonly Evolution _evolution;
+        private readonly Hunting _hunting;
+        private readonly Farming _farming;
         
         public Logic(Settings clientSettings)
         {
             _clientSettings = clientSettings;
             _client = new Client(_clientSettings);
+
+            _evolution = new Evolution(_client, _clientSettings);
+            _hunting = new Hunting(_client, _clientSettings);
+            _farming = new Farming(_client, _clientSettings);
+
+        }
+
+        public async Task PrintPlayerStats()
+        {
+            var player = await _client.Player.GetPlayer();
+            var mana = player.PlayerData.Currencies.Where(c => c?.Name == "STARDUST").FirstOrDefault();
+            Log.Write($"You are {player.PlayerData.Username}; stardust: {mana.Amount}");
+            await Randomization.RandomDelay(10000);
         }
 
         // TODO: split into multiple methods
         public async Task LoopWhileAuthIsValid()
         {
-            int invalidResponseCount = 0;
             while (true)
             {
                 try
@@ -36,16 +52,13 @@ namespace PokemonGo.SimpleBot
 
                     while (true)
                     {
-                        var player = await _client.Player.GetPlayer();
-                        var mana = player.PlayerData.Currencies.Where(c => c?.Name == "STARDUST").FirstOrDefault();
-                        Log.Write($" * You are {player.PlayerData.Username}; stardust: {mana.Amount}");
-                        await Randomization.RandomDelay(10000);
+                        await PrintPlayerStats();
 
-                        if (_clientSettings.AllowTransfer) await TransferDuplicatePokemon();
-                        if (_clientSettings.AllowEvolution) await EvolveAllPokemonWithEnoughCandy();
-                        if (_clientSettings.AllowRecycle) await RecycleItems();
+                        if (_clientSettings.AllowTransfer) await _client.Inventory.TransferDuplicatePokemon(_clientSettings.PokemonsToKeep);
+                        if (_clientSettings.AllowEvolution) await _evolution.EvolveAllPokemonWithEnoughCandy();
+                        if (_clientSettings.AllowRecycle) await _client.Inventory.RecycleItems(_clientSettings.ItemRecycleFilter);
 
-                        var pokestops = await GetNearbyPokestops();
+                        var pokestops = await _farming.GetNearbyPokestops();
 
                         var nearestUnseenStop = pokestops
                             .Where(pokestop => !visitedStops.Contains(pokestop.Id))
@@ -53,10 +66,10 @@ namespace PokemonGo.SimpleBot
 
                         if (nearestUnseenStop == null) break;
 
-                        await WalkToPokeStop(nearestUnseenStop);
+                        await _farming.WalkToPokeStop(nearestUnseenStop);
                         visitedStops.Add(nearestUnseenStop.Id);
 
-                        if (_clientSettings.AllowFarming) await FarmPokeStop(nearestUnseenStop);
+                        if (_clientSettings.AllowFarming) await _farming.FarmPokeStop(nearestUnseenStop);
 
                         try
                         {
@@ -66,7 +79,7 @@ namespace PokemonGo.SimpleBot
 
                                 for (int sightings = 0; sightings < _clientSettings.MaxPokemonsPerPokestop; sightings++)
                                 {
-                                    var nearbyPokemons = await GetNearbyPokemons();
+                                    var nearbyPokemons = await _hunting.GetNearbyPokemons();
                                     
                                     var nearestUnseenPokemon = nearbyPokemons
                                         .Where(p => !visitedPokemons.Contains(p.EncounterId))
@@ -74,27 +87,27 @@ namespace PokemonGo.SimpleBot
 
                                     if (nearestUnseenPokemon == null) break;
 
-                                    var encounter = await WalkToPokemon(nearestUnseenPokemon);
+                                    var encounter = await _hunting.WalkToPokemon(nearestUnseenPokemon);
                                     visitedPokemons.Add(nearestUnseenPokemon.EncounterId);
-                                    await CatchEncounter(encounter, nearestUnseenPokemon);
+                                    await _hunting.CatchEncounter(encounter, nearestUnseenPokemon);
                                 }
                             }
                         }
                         catch (OutOfPokeBallsException)
                         {
-                            Log.Write("We are out of pokeballs. Let us go to the next pokestop.");
+                            Log.Write(" ! We are out of pokeballs. Let us go to the next pokestop.");
                         }
                     }
                 }
                 catch (InvalidResponseException ex)
                 {
-                    invalidResponseCount++;
-                    
-                    if (invalidResponseCount > 20)
+                    ErrorStats.RegisterException(ex);
+
+                    if (ErrorStats.GetNumberOfRecentErrors(ex, 10)>5)
                         throw new RepeatedInvalidResponseException();
 
                     Log.Write($"Exception: {ex.Message}; Cooling off for a minute", LogLevel.Warning);
-                    await Randomization.RandomDelay(60000);
+                    await Randomization.RandomDelay(60*1000);
                 }
                 catch (Exception ex)
                 {
@@ -115,13 +128,22 @@ namespace PokemonGo.SimpleBot
                 catch (AccessTokenExpiredException)
                 {
                     Log.Write($"Access token expired");
+                    await Randomization.RandomDelay(10000);
                 }
-                catch (RepeatedInvalidResponseException)
+                catch (RepeatedInvalidResponseException ex)
                 {
-                    Log.Write("Number of invalid responses has reached a safety threshold; cooling off for 10 minutes", LogLevel.Error);
-                    await Randomization.RandomDelay(600000);
+                    ErrorStats.RegisterException(ex);
+                    if (ErrorStats.GetNumberOfRecentErrors(ex, 60) > 2)
+                    {
+                        Log.Write("Too many errors per hour; terminating", LogLevel.Error);
+                        return;
+                    }
+                    else
+                    {
+                        Log.Write("Number of invalid responses has reached a safety threshold; cooling off for 10 minutes", LogLevel.Error);
+                        await Randomization.RandomDelay(60 * 10 * 1000);
+                    }
                 }
-                await Randomization.RandomDelay(10000);
             }
         }
     }

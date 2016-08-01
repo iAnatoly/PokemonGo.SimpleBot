@@ -51,8 +51,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Actions.cs" />
+    <Compile Include="Actions\Farming.cs" />
+    <Compile Include="Actions\Hunting.cs" />
+    <Compile Include="Actions\Evolution.cs" />
+    <Compile Include="Actions\InventoryExtensions.cs" />
+    <Compile Include="Actions\InventoryRecycleExtension.cs" />
+    <Compile Include="Actions\InventoryTransferPokemonsExtension.cs" />
+    <Compile Include="Actions\ClientRandomizationExtension.cs" />
     <Compile Include="EntryPoint.cs" />
+    <Compile Include="Utils\ErrorStats.cs" />
     <Compile Include="Logic.cs" />
     <Compile Include="Exceptions\OutOfPokeBallsException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -87,9 +94,7 @@
       <Name>PokemonGo.Logger</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Actions\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
