@@ -25,3 +25,9 @@ Another Pier 39 walk - this time it took a different turn:
 Golden Gate walkabout:
 
 ![pier 39 walk](content/BotWalk3.PNG)
+
+
+###Legal
+
+This code is in no way affiliated with, authorized, maintained, sponsored or endorsed by Niantic, The Pokémon Company, Nintendo or any of its affiliates or subsidiaries. 
+This project was created for educational and entertainment use ONLY. Use at your own risk.
