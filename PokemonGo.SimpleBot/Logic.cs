@@ -81,10 +81,10 @@ namespace PokemonGo.SimpleBot
                 {
                     ErrorStats.RegisterException(ex);
 
-                    if (ErrorStats.GetNumberOfRecentErrors(ex, 10)>5)
+                    if (ErrorStats.GetNumberOfRecentErrors(ex, 10)>3)
                         throw new RepeatedInvalidResponseException();
 
-                    Log.Write($"Exception: {ex.Message}; Cooling off for a minute", LogLevel.Warning);
+                    Log.Write($"Exception: {ex.Message} Cooling off for a minute", LogLevel.Warning);
                     await Randomization.RandomDelay(60*1000);
                 }
                 catch (Exception ex)
