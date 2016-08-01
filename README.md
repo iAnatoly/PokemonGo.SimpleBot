@@ -29,7 +29,7 @@ Golden Gate walkabout:
 
 ###Sample console output:
 ---
-'''
+```
 u: bxxxxxxxxxxxxxd
 p: ********
 [13:24:45] You are XxxxxxXxxx; stardust: 30871
@@ -90,7 +90,7 @@ p: ********
 [13:32:05] You are XxxxxxXxxx; stardust: 31871
 [13:32:19]  > 1x ItemSuperPotion
 [13:32:20]  . Walking towards Checkpoint for 78m in 37s @ 8km/h
-'''
+```
 ---
 
 ###Legal
