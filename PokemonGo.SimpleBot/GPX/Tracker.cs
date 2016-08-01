@@ -16,7 +16,7 @@ namespace PokemonGo.SimpleBot.GPX
         {
             _xml = new StringBuilder();
             _xml.Append("<?xml version='1.0' encoding='UTF-8' standalone='no' ?><gpx><trk><name></name><trkseg>");
-            _fileName = $"PokemonGo.SimpleBot.trace-{DateTime.Now.ToString("yyyy-MM-dd-HH-MM-SS")}.gpx";
+            _fileName = $"PokemonGo.SimpleBot.trace-{DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss")}.gpx";
         }
 
         public static async Task RegisterWayPoint(double latitude, double longitude, double elevation)
