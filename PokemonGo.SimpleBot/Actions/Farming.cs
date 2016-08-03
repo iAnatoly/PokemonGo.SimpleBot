@@ -25,7 +25,7 @@ namespace PokemonGo.SimpleBot.Actions
         public async Task<IEnumerable<FortData>> GetNearbyPokestops()
         {
             var mapObjects = await _client.Map.GetMapObjects();
-            var pokeStops = mapObjects.MapCells
+            var pokeStops = mapObjects.Item1.MapCells
                 .SelectMany(i => i.Forts)
                 .Where(i => i.Type == FortType.Checkpoint && i.CooldownCompleteTimestampMs < DateTime.UtcNow.ToUnixTime())
                 .OrderBy(pokeStop => Navigation.DistanceBetween2Coordinates(_client.CurrentLatitude, _client.CurrentLongitude, pokeStop.Latitude, pokeStop.Longitude))

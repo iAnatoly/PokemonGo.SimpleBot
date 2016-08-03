@@ -3,10 +3,10 @@
   <Profiles />
   <Settings>
     <Setting Name="Latitude" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">37.807697</Value>
+      <Value Profile="(Default)">37.808631</Value>
     </Setting>
     <Setting Name="Longitude" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">-122.474926</Value>
+      <Value Profile="(Default)">-122.409553</Value>
     </Setting>
     <Setting Name="Altitude" Type="System.Double" Scope="User">
       <Value Profile="(Default)">20</Value>
@@ -15,13 +15,13 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="AllowEvolution" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="AllowRecycle" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="NumberOfSamePokemonsToKeep" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">1</Value>
+      <Value Profile="(Default)">2</Value>
     </Setting>
     <Setting Name="AllowTransfer" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>

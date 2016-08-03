@@ -64,7 +64,7 @@ namespace PokemonGo.SimpleBot.Actions
         {
             var mapObjects = await _client.Map.GetMapObjects();
 
-            var pokemons = mapObjects.MapCells
+            var pokemons = mapObjects.Item1.MapCells
                 .SelectMany(i => i.CatchablePokemons)
                 .OrderBy(p => Navigation.DistanceBetween2Coordinates(_client.CurrentLatitude, _client.CurrentLongitude, p.Latitude, p.Longitude))
                 .ToList();

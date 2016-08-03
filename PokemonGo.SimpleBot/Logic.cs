@@ -24,7 +24,7 @@ namespace PokemonGo.SimpleBot
         public Logic(Settings clientSettings)
         {
             _clientSettings = clientSettings;
-            _client = new Client(_clientSettings);
+            _client = new Client(_clientSettings, new APIFailureStrategy());
 
             _evolution = new Evolution(_client, _clientSettings);
             _hunting = new Hunting(_client, _clientSettings);
@@ -117,13 +117,18 @@ namespace PokemonGo.SimpleBot
             {
                 try
                 {
-                    await _client.Login.DoGoogleLogin(_clientSettings.GoogleUsername, _clientSettings.GooglePassword);
+                    await _client.Login.DoLogin();
                     await LoopWhileAuthIsValid();
                 }
                 catch (AccessTokenExpiredException)
                 {
                     Log.Write($"Access token expired");
                     await Randomization.RandomDelay(10000);
+                }
+                catch (TaskCanceledException)
+                {
+                    Log.Write($"Tasks are being cancelled - server unresponsive. Cooling off and restarting.");
+                    await Randomization.RandomDelay(60 * 10 * 1000);
                 }
                 catch (RepeatedInvalidResponseException ex)
                 {

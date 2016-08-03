@@ -58,6 +58,7 @@
     <Compile Include="Actions\RecycleItemsExt.cs" />
     <Compile Include="Actions\TransferDuplicatePokemonsExt.cs" />
     <Compile Include="Actions\UpdatePlayerLocationExt.cs" />
+    <Compile Include="APIFailureStrategy.cs" />
     <Compile Include="EntryPoint.cs" />
     <Compile Include="GPX\Tracker.cs" />
     <Compile Include="Utils\ErrorStats.cs" />

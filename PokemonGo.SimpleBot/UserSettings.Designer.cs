@@ -25,7 +25,7 @@ namespace PokemonGo.SimpleBot {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("37.807697")]
+        [global::System.Configuration.DefaultSettingValueAttribute("37.808631")]
         public double Latitude {
             get {
                 return ((double)(this["Latitude"]));
@@ -37,7 +37,7 @@ namespace PokemonGo.SimpleBot {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("-122.474926")]
+        [global::System.Configuration.DefaultSettingValueAttribute("-122.409553")]
         public double Longitude {
             get {
                 return ((double)(this["Longitude"]));
@@ -73,7 +73,7 @@ namespace PokemonGo.SimpleBot {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool AllowEvolution {
             get {
                 return ((bool)(this["AllowEvolution"]));
@@ -97,7 +97,7 @@ namespace PokemonGo.SimpleBot {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
         public int NumberOfSamePokemonsToKeep {
             get {
                 return ((int)(this["NumberOfSamePokemonsToKeep"]));
