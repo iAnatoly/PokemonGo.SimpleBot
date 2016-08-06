@@ -29,7 +29,7 @@ namespace PokemonGo.SimpleBot.Actions
                 .Select(i => i.PokemonData)
                 .Where(p => p != null && p.PokemonId > 0);
             var pokemons = playerPokemons
-                .Where(p => p.DeployedFortId != null) //Don't evolve pokemon in gyms
+                .Where(p => !p.DeployedFortId.Any()) //Don't evolve pokemon in gyms
                 .OrderByDescending(p => p.Cp) // evolve highest CP first, do not waste candy on XP
                 .ToList();
             return pokemons;

@@ -14,9 +14,9 @@ namespace PokemonGo.SimpleBot.Actions
 
             var duplicatePokemons = inventoryItems
                 .Select(i => i.PokemonData)
-                .Where(p => p?.DeployedFortId != null && p.PokemonId > 0) // not in agym, and actually a real pokemon
+                .Where(p => !p.DeployedFortId.Any() && p.PokemonId > 0) // not in agym, and actually a real pokemon
                 .GroupBy(p => p.PokemonId)
-                .Where(x => x.Count() >pokemonsToKeep)
+                .Where(x => x.Count() > pokemonsToKeep)
                 .SelectMany(p => p
                         .Where(x => x.Favorite == 0) // not starred
                         .OrderByDescending(x => x.Cp) // lowest CP
