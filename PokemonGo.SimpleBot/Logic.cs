@@ -36,7 +36,14 @@ namespace PokemonGo.SimpleBot
         {
             var player = await _client.Player.GetPlayer();
             var mana = player.PlayerData.Currencies.FirstOrDefault(c => c?.Name == "STARDUST");
-            Log.Write($"You are {player.PlayerData.Username}; stardust: {mana?.Amount}");
+  
+            var profile = await _client.Player.GetPlayerProfile(player.PlayerData.Username);
+            var walked = profile?.Badges?.FirstOrDefault(badge => badge.BadgeType == POGOProtos.Enums.BadgeType.BadgeTravelKm)?.CurrentValue;
+            var totalCaptured = profile?.Badges?.FirstOrDefault(badge => badge.BadgeType == POGOProtos.Enums.BadgeType.BadgeCaptureTotal)?.CurrentValue;
+            
+            Log.Write($"You are {player.PlayerData.Username}; Walked for: {walked:F2}km; Total Captured: {totalCaptured}; Stardust: {mana?.Amount}");
+            
+            var result = await _client.Player.SetPlayerTeam(POGOProtos.Enums.TeamColor.Yellow);
             await Randomization.RandomDelay(10000);
         }
 
