@@ -61,7 +61,7 @@ namespace PokemonGo.SimpleBot {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool AllowCatching {
             get {
                 return ((bool)(this["AllowCatching"]));
@@ -85,7 +85,7 @@ namespace PokemonGo.SimpleBot {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool AllowRecycle {
             get {
                 return ((bool)(this["AllowRecycle"]));
@@ -109,7 +109,7 @@ namespace PokemonGo.SimpleBot {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool AllowTransfer {
             get {
                 return ((bool)(this["AllowTransfer"]));
@@ -133,7 +133,7 @@ namespace PokemonGo.SimpleBot {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool AllowFarming {
             get {
                 return ((bool)(this["AllowFarming"]));

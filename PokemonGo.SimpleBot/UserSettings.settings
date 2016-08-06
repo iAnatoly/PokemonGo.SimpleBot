@@ -12,25 +12,25 @@
       <Value Profile="(Default)">20</Value>
     </Setting>
     <Setting Name="AllowCatching" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="AllowEvolution" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="AllowRecycle" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="NumberOfSamePokemonsToKeep" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">2</Value>
     </Setting>
     <Setting Name="AllowTransfer" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="WalkingSpeedKmh" Type="System.Double" Scope="User">
       <Value Profile="(Default)">15</Value>
     </Setting>
     <Setting Name="AllowFarming" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="MaxPOkemonsPerPokestop" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">100</Value>
