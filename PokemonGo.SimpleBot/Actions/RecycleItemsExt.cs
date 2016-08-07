@@ -5,6 +5,7 @@ using PokemonGo.SimpleBot.Utils;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using PokemonGo.SimpleBot.Extensions;
 
 namespace PokemonGo.SimpleBot.Actions
 {

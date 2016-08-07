@@ -9,6 +9,8 @@ using PokemonGo.SimpleBot.Utils;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using PokemonGo.SimpleBot.Extensions;
+using System;
 
 namespace PokemonGo.SimpleBot.Actions
 {
@@ -25,11 +27,11 @@ namespace PokemonGo.SimpleBot.Actions
 
         private static IEnumerable<PokemonData> GetPokemonToEvolve(IEnumerable<InventoryItemData> inventoryItems)
         {
-            var playerPokemons = inventoryItems
-                .Select(i => i.PokemonData)
-                .Where(p => p != null && p.PokemonId > 0);
-            var pokemons = playerPokemons
-                .Where(p => !p.DeployedFortId.Any()) //Don't evolve pokemon in gyms
+            var pokemons = inventoryItems
+               .Select(i => i.PokemonData)
+               .Where(p => p != null // could be a pokemon
+                    && p.PokemonId > 0 // most likely a pokemon
+                    && !p.DeployedFortId.Any()) // not in a gym
                 .OrderByDescending(p => p.Cp) // evolve highest CP first, do not waste candy on XP
                 .ToList();
             return pokemons;
@@ -90,6 +92,5 @@ namespace PokemonGo.SimpleBot.Actions
             await Randomization.RandomDelay(1000);
             return pokeSettings;
         }
-        
     }
 }

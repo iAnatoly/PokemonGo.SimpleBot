@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using static POGOProtos.Networking.Responses.CatchPokemonResponse.Types;
+using PokemonGo.SimpleBot.Extensions;
 
 namespace PokemonGo.SimpleBot.Actions
 {

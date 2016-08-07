@@ -12,6 +12,7 @@ namespace PokemonGo.SimpleBot
     using Utils;
     using Exceptions;
     using Actions;
+    using Extensions;
 
     partial class Logic
     {
@@ -36,16 +37,22 @@ namespace PokemonGo.SimpleBot
         {
             var player = await _client.Player.GetPlayer();
             var mana = player.PlayerData.Currencies.FirstOrDefault(c => c?.Name == "STARDUST");
-  
-            var profile = await _client.Player.GetPlayerProfile(player.PlayerData.Username);
-            var walked = profile?.Badges?.FirstOrDefault(badge => badge.BadgeType == POGOProtos.Enums.BadgeType.BadgeTravelKm)?.CurrentValue;
-            var totalCaptured = profile?.Badges?.FirstOrDefault(badge => badge.BadgeType == POGOProtos.Enums.BadgeType.BadgeCaptureTotal)?.CurrentValue;
+            var stats = await _client.Inventory.GetPlayerStats();
+
+            Log.Write($"You are {player.PlayerData.Username}; Level: {stats.Level}; Walked for: {stats.KmWalked:F2}km; Total Captured: {stats.PokemonsCaptured}; Stardust: {mana?.Amount}");
             
-            Log.Write($"You are {player.PlayerData.Username}; Walked for: {walked:F2}km; Total Captured: {totalCaptured}; Stardust: {mana?.Amount}");
-            
-            var result = await _client.Player.SetPlayerTeam(POGOProtos.Enums.TeamColor.Yellow);
+            foreach (var currency in player.PlayerData.Currencies)
+            {
+                Log.Write("   {0:-20}:{1:-5}");
+            }
+            foreach (var prop in stats.GetType().GetProperties())
+            {
+                Log.Write($"   {prop.Name:-20}:\t{prop.GetValue(stats, null):-5}");
+            }
+
             await Randomization.RandomDelay(10000);
         }
+
 
         private async Task LoopWhileAuthIsValid()
         {
@@ -58,7 +65,7 @@ namespace PokemonGo.SimpleBot
                     while (true)
                     {
                         await PrintPlayerStats();
-
+                        
                         if (_clientSettings.AllowTransfer) await _client.Inventory.TransferDuplicatePokemon(_clientSettings.PokemonsToKeep);
                         if (_clientSettings.AllowEvolution) await _evolution.EvolveAllPokemonWithEnoughCandy();
                         if (_clientSettings.AllowRecycle) await _client.Inventory.RecycleItems(_clientSettings.ItemRecycleFilter);
