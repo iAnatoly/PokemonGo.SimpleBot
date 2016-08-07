@@ -38,16 +38,19 @@ namespace PokemonGo.SimpleBot
             var player = await _client.Player.GetPlayer();
             var mana = player.PlayerData.Currencies.FirstOrDefault(c => c?.Name == "STARDUST");
             var stats = await _client.Inventory.GetPlayerStats();
-
-            Log.Write($"You are {player.PlayerData.Username}; Level: {stats.Level}; Walked for: {stats.KmWalked:F2}km; Total Captured: {stats.PokemonsCaptured}; Stardust: {mana?.Amount}");
+            
+            Log.Write($"\n----------  You are {player.PlayerData.Username}; Level: {stats.Level}; Walked for: {stats.KmWalked:F2}km; Total Captured: {stats.PokemonsCaptured}; Stardust: {mana?.Amount}");
             
             foreach (var currency in player.PlayerData.Currencies)
             {
-                Log.Write("   {0:-20}:{1:-5}");
+                Log.Write($"{currency.Name,20}: {currency.Amount,-5}");
             }
             foreach (var prop in stats.GetType().GetProperties())
             {
-                Log.Write($"   {prop.Name:-20}:\t{prop.GetValue(stats, null):-5}");
+                if (prop.PropertyType == typeof(int) || prop.PropertyType == typeof(float))
+                {
+                    Log.Write($"{prop.Name,20}: {prop.GetValue(stats, null),-5}");
+                }
             }
 
             await Randomization.RandomDelay(10000);
